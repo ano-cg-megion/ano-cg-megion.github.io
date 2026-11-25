@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АНО содействия цифровой грамотности «Цифровые горизонты» — г. Мегион</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2b6cb0;
+            --accent: #0d9488;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --font-scale: 1;
+        }
+
+        body.high-contrast {
+            --primary: #000000;
+            --primary-light: #000000;
+            --accent: #000000;
+            --bg: #ffffff;
+            --surface: #ffffff;
+            --text: #000000;
+            --text-muted: #000000;
+            --border: #000000;
+        }
+
+        body.high-contrast .btn-primary,
+        body.high-contrast header,
+        body.high-contrast footer {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border: 2px solid #000000 !important;
+        }
+
+        body.high-contrast .card,
+        body.high-contrast .doc-item,
+        body.high-contrast nav {
+            border: 2px solid #000000 !important;
+            box-shadow: none !important;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: calc(16px * var(--font-scale));
+            transition: font-size 0.2s ease;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Панель доступности */
+        .a11y-bar {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .a11y-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .a11y-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .a11y-btn {
+            background: #1e293b;
+            color: #ffffff;
+            border: 1px solid #475569;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .a11y-btn:hover, .a11y-btn.active {
+            background: #0d9488;
+            border-color: #0d9488;
+        }
+
+        /* Шапка */
+        header {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-badge {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        .brand-text h1 {
+            font-size: calc(20px * var(--font-scale));
+            color: var(--primary);
+            line-height: 1.25;
+            font-weight: 700;
+        }
+
+        .brand-text p {
+            font-size: calc(13px * var(--font-scale));
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .header-contacts {
+            text-align: right;
+        }
+
+        .header-contacts a {
+            display: block;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: calc(16px * var(--font-scale));
+        }
+
+        .header-contacts span {
+            font-size: calc(13px * var(--font-scale));
+            color: var(--text-muted);
+        }
+
+        /* Навигация */
+        nav {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .nav-list a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-weight: 500;
+            font-size: calc(15px * var(--font-scale));
+            transition: background 0.2s;
+        }
+
+        .nav-list a:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Главный экран (Об АНО) */
+        .hero {
+            background: linear-gradient(135deg, #1a365d 0%, #1e40af 100%);
+            color: #ffffff;
+            padding: 56px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .hero h2 {
+            font-size: calc(30px * var(--font-scale));
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: calc(17px * var(--font-scale));
+            opacity: 0.95;
+            margin-bottom: 24px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: calc(15px * var(--font-scale));
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .hero-stats {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 24px;
+        }
+
+        .stat-row {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-row:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .stat-num {
+            font-size: calc(24px * var(--font-scale));
+            font-weight: 800;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: calc(13px * var(--font-scale));
+            opacity: 0.9;
+        }
+
+        /* Секции */
+        section {
+            padding: 52px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:nth-child(even) {
+            background-color: var(--surface);
+        }
+
+        .section-title {
+            font-size: calc(26px * var(--font-scale));
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: calc(16px * var(--font-scale));
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        section:nth-child(even) .card {
+            background: var(--bg);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: calc(19px * var(--font-scale));
+        }
+
+        /* Документы */
+        .doc-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .doc-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text);
+            transition: border-color 0.2s;
+        }
+
+        .doc-item:hover {
+            border-color: var(--accent);
+        }
+
+        .doc-badge {
+            background: #e2e8f0;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 12px;
+            padding: 6px 8px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .doc-info strong {
+            display: block;
+            font-size: calc(15px * var(--font-scale));
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .doc-info span {
+            font-size: calc(13px * var(--font-scale));
+            color: var(--text-muted);
+        }
+
+        /* Карточка проекта */
+        .badge-status {
+            display: inline-block;
+            background: #ccfbf1;
+            color: #0f766e;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+        }
+
+        .project-meta {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            font-size: calc(14px * var(--font-scale));
+            color: var(--text-muted);
+        }
+
+        /* Команда */
+        .team-card {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .avatar-placeholder {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        /* Реквизиты и форма */
+        .req-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .req-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid var(--border);
+            font-size: calc(14px * var(--font-scale));
+            vertical-align: top;
+        }
+
+        .req-table td:first-child {
+            font-weight: 600;
+            color: var(--text-muted);
+            width: 38%;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: calc(14px * var(--font-scale));
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: calc(15px * var(--font-scale));
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: calc(13px * var(--font-scale));
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .checkbox-label input {
+            width: auto;
+            margin-top: 4px;
+        }
+
+        footer {
+            background-color: #0f172a;
+            color: #cbd5e1;
+            padding: 32px 0;
+            font-size: calc(14px * var(--font-scale));
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid, .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .header-contacts {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Панель доступности для слабовидящих -->
+    <div class="a11y-bar">
+        <div class="container">
+            <span>Официальный сайт социально ориентированной некоммерческой организации (ХМАО – Югра)</span>
+            <div class="a11y-controls">
+                <span>Размер шрифта:</span>
+                <button class="a11y-btn active" onclick="setFontScale(1, this)">А</button>
+                <button class="a11y-btn" onclick="setFontScale(1.15, this)">А+</button>
+                <button class="a11y-btn" onclick="setFontScale(1.3, this)">А++</button>
+                <button class="a11y-btn" onclick="toggleContrast(this)">Версия для слабовидящих</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Шапка организации -->
+    <header>
+        <div class="container header-top">
+            <div class="brand">
+                <div class="logo-badge">ЦГ</div>
+                <div class="brand-text">
+                    <h1>АНО содействия цифровой грамотности «Цифровые горизонты»</h1>
+                    <p>Ханты-Мансийский автономный округ – Югра, городской округ город Мегион</p>
+                </div>
+            </div>
+            <div class="header-contacts">
+                <a href="tel:+79044597399">+7 (904) 459-73-99</a>
+                <span>ano.cg@mail.ru • г. Мегион</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главное меню -->
+    <nav>
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#about">Об организации</a></li>
+                <li><a href="#directions">Направления деятельности</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#documents">Документы и отчётность</a></li>
+                <li><a href="#team">Команда</a></li>
+                <li><a href="#partners">Партнёры</a></li>
+                <li><a href="#contacts">Контакты и реквизиты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Главный блок -->
+    <section class="hero" id="about">
+        <div class="container hero-grid">
+            <div>
+                <h2>Помогаем жителям Югры уверенно и безопасно жить в цифровой среде</h2>
+                <p>Автономная некоммерческая организация содействия цифровой грамотности «Цифровые горизонты» создана в городе Мегионе для преодоления цифрового неравенства, обучения граждан старшего поколения и уязвимых групп населения работе с электронными государственными сервисами и защиты от кибермошенничества.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Наши проекты</a>
+                    <a href="#documents" class="btn btn-outline">Уставные документы</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-row">
+                    <span class="stat-num">2026 год</span>
+                    <span class="stat-label">Год государственной регистрации АНО в г. Мегионе</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-num">с 2019 года</span>
+                    <span class="stat-label">Практический опыт руководителя как сертифицированного цифрового куратора</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-num">ХМАО – Югра</span>
+                    <span class="stat-label">География реализации социальных и просветительских инициатив</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Направления уставной деятельности -->
+    <section id="directions">
+        <div class="container">
+            <h2 class="section-title">Направления деятельности организации</h2>
+            <p class="section-subtitle">Уставные цели и ключевые задачи АНО «Цифровые горизонты»</p>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Цифровое просвещение</h3>
+                    <p>Проведение адаптированных очных и консультационных курсов компьютерной грамотности для граждан пожилого возраста, людей с ограниченными возможностями здоровья (ОВЗ) и представителей КМНС.</p>
+                </div>
+                <div class="card">
+                    <h3>Кибергигиена и правовая защита</h3>
+                    <p>Профилактика дистанционного мошенничества и социальной инженерии, разработка и распространение печатных памяток крупным шрифтом по защите персональных данных и финансов.</p>
+                </div>
+                <div class="card">
+                    <h3>Социальная адаптация</h3>
+                    <p>Обучение самостоятельному использованию федеральных и региональных электронных сервисов Югры (Госуслуги, Электронная регистратура Югры, ГИС ЖКХ, Госуслуги Дом) для сохранения личной автономии граждан.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Проекты организации -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Проекты организации</h2>
+            <p class="section-subtitle">Актуальные социальные инициативы АНО «Цифровые горизонты»</p>
+            <div class="grid-2">
+                <div class="card">
+                    <span class="badge-status">Заявка подаётся на Грант Губернатора Югры 2027</span>
+                    <h3>«Цифровые горизонты Югры: адаптивная программа компьютерной грамотности и кибербезопасности»</h3>
+                    <p>Очная 8-месячная программа обучения работе на персональных компьютерах и безопасного использования электронных сервисов для 24 граждан пожилого возраста г. Мегиона (включая пенсионеров с ОВЗ, членов семей участников СВО и представителей КМНС).</p>
+                    <div class="project-meta">
+                        <strong>Сроки реализации:</strong> 01.04.2027 – 30.11.2027<br>
+                        <strong>Площадки:</strong> БУ ХМАО – Югры «Мегионский КЦСОН» и Центральная городская библиотека г. Мегиона<br>
+                        <strong>Формат:</strong> 96 ак. часов (теория + практика в микрогруппах по 6 человек)
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="badge-status" style="background:#e2e8f0; color:#334155;">Постоянная просветительская работа</span>
+                    <h3>Информационная кампания «Кибербезопасность для старшего поколения»</h3>
+                    <p>Подготовка и распространение адаптированных памяток и инфографики с алгоритмами защиты от телефонных мошенников, фишинговых ссылок и взлома учётных записей на портале «Госуслуги».</p>
+                    <div class="project-meta">
+                        <strong>Территория:</strong> г. Мегион, ХМАО – Югра<br>
+                        <strong>Аудитория:</strong> жители города Мегиона старшего возраста и их родственники
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Документы и отчётность -->
+    <section id="documents">
+        <div class="container">
+            <h2 class="section-title">Документы и информационная открытость</h2>
+            <p class="section-subtitle">Официальные учредительные документы и нормативная база организации (для размещения PDF-копий)</p>
+            <div class="doc-list">
+                <a href="#contacts" class="doc-item" onclick="alert('Замените эту ссылку на путь к файлу Ustav_ANO.pdf после загрузки на хостинг'); return false;">
+                    <span class="doc-badge">PDF</span>
+                    <div class="doc-info">
+                        <strong>Устав АНО «Цифровые горизонты»</strong>
+                        <span>Действующая редакция, утверждённая решением учредителя</span>
+                    </div>
+                </a>
+                <a href="#contacts" class="doc-item" onclick="alert('Замените эту ссылку на путь к файлу EGRUL_ANO.pdf'); return false;">
+                    <span class="doc-badge">PDF</span>
+                    <div class="doc-info">
+                        <strong>Лист записи ЕГРЮЛ и свидетельство ИНН</strong>
+                        <span>ОГРН 1268600005354 • ИНН 8605036143 • дата рег. 04.08.2026</span>
+                    </div>
+                </a>
+                <a href="#contacts" class="doc-item" onclick="alert('Замените эту ссылку на путь к файлу Politika_PDN.pdf'); return false;">
+                    <span class="doc-badge">PDF</span>
+                    <div class="doc-info">
+                        <strong>Политика обработки персональных данных</strong>
+                        <span>В соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ</span>
+                    </div>
+                </a>
+                <a href="#contacts" class="doc-item" onclick="alert('Раздел для публикации годового отчёта в Минюст РФ за 2026 год'); return false;">
+                    <span class="doc-badge">ОТЧЁТ</span>
+                    <div class="doc-info">
+                        <strong>Отчётность о деятельности организации</strong>
+                        <span>Публичные отчёты о реализованных проектах и отчётность в Минюст РФ</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Команда -->
+    <section id="team">
+        <div class="container">
+            <h2 class="section-title">Команда организации</h2>
+            <p class="section-subtitle">Руководство и специалисты АНО «Цифровые горизонты»</p>
+            <div class="grid-2">
+                <div class="card team-card">
+                    <div class="avatar-placeholder">ЮС</div>
+                    <div>
+                        <h3>Смирнова Юлия Владимировна</h3>
+                        <p style="color: var(--accent); font-weight: 600; margin-bottom: 8px;">Генеральный директор, руководитель образовательных программ</p>
+                        <p>Сертифицированный цифровой куратор (консультант в области развития цифровой грамотности населения с 2019 года). Автор адаптированных методик обучения граждан старшего поколения компьютерной грамотности и кибербезопасности.</p>
+                    </div>
+                </div>
+                <div class="card team-card">
+                    <div class="avatar-placeholder" style="background: var(--accent);">ВП</div>
+                    <div>
+                        <h3>Добровольческий корпус и привлечённые эксперты</h3>
+                        <p style="color: var(--accent); font-weight: 600; margin-bottom: 8px;">Волонтёры-инструкторы и методисты</p>
+                        <p>К реализации просветительских мероприятий привлекаются зарегистрированные добровольцы платформы Добро.рф, специалисты в области информационной безопасности и бухгалтерского сопровождения НКО.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Партнёры -->
+    <section id="partners">
+        <div class="container">
+            <h2 class="section-title">Сетевые партнёры</h2>
+            <p class="section-subtitle">Учреждения и организации города Мегиона, поддерживающие нашу деятельность</p>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>БУ ХМАО – Югры «Мегионский комплексный центр социального обслуживания населения»</h3>
+                    <p>Информационное и организационное партнёрство, совместная работа по социальной адаптации граждан пожилого возраста, людей с инвалидностью и членов семей участников СВО.</p>
+                </div>
+                <div class="card">
+                    <h3>Центральная городская библиотека г. Мегиона</h3>
+                    <p>Инфраструктурное и просветительское сотрудничество, совместное проведение курсов компьютерной грамотности и мероприятий по финансовой и цифровой кибергигиене.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты и реквизиты -->
+    <section id="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакты и официальные реквизиты</h2>
+            <p class="section-subtitle">Свяжитесь с нами по вопросам сотрудничества, участия в программах и поддержки проектов</p>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Реквизиты организации</h3>
+                    <table class="req-table">
+                        <tr>
+                            <td>Полное наименование</td>
+                            <td>Автономная некоммерческая организация содействия цифровой грамотности «Цифровые горизонты»</td>
+                        </tr>
+                        <tr>
+                            <td>Сокращённое наименование</td>
+                            <td>АНО «Цифровые горизонты»</td>
+                        </tr>
+                        <tr>
+                            <td>ОГРН / Дата регистрации</td>
+                            <td>1268600005354 от 04.08.2026</td>
+                        </tr>
+                        <tr>
+                            <td>ИНН / КПП</td>
+                            <td>8605036143 / 860501001</td>
+                        </tr>
+                        <tr>
+                            <td>Юридический адрес</td>
+                            <td>628680, Ханты-Мансийский автономный округ – Югра, г.о. Мегион, г. Мегион, ул. Заречная, д. 4, кв. 34</td>
+                        </tr>
+                        <tr>
+                            <td>Руководитель</td>
+                            <td>Генеральный директор Смирнова Юлия Владимировна</td>
+                        </tr>
+                        <tr>
+                            <td>Телефон / E-mail</td>
+                            <td>+7 (904) 459-73-99 • ano.cg@mail.ru</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Обратная связь</h3>
+                    <form onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label for="senderName">Ваше имя или наименование организации *</label>
+                            <input type="text" id="senderName" required placeholder="Например: Иванова Мария Петровна">
+                        </div>
+                        <div class="form-group">
+                            <label for="senderContact">Телефон или электронная почта для ответа *</label>
+                            <input type="text" id="senderContact" required placeholder="+7 (900) 000-00-00">
+                        </div>
+                        <div class="form-group">
+                            <label for="senderMsg">Сообщение *</label>
+                            <textarea id="senderMsg" rows="3" required placeholder="Вопрос о курсах, предложение о партнёрстве..."></textarea>
+                        </div>
+                        <label class="checkbox-label">
+                            <input type="checkbox" required>
+                            <span>Я даю согласие на обработку персональных данных в соответствии с ФЗ № 152-ФЗ «О персональных данных».</span>
+                        </label>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить обращение</button>
+                        <p id="formResult" style="margin-top: 10px; color: var(--accent); font-weight: 600;"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <strong>© 2026 АНО содействия цифровой грамотности «Цифровые горизонты»</strong><br>
+                <span>ОГРН 1268600005354 • ИНН 8605036143 • г. Мегион, ХМАО – Югра</span>
+            </div>
+            <div>
+                <span>При копировании материалов ссылка на сайт организации обязательна.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function setFontScale(scale, btn) {
+            document.documentElement.style.setProperty('--font-scale', scale);
+            document.querySelectorAll('.a11y-btn').forEach(b => {
+                if (b.textContent.startsWith('А')) b.classList.remove('active');
+            });
+            btn.classList.add('active');
+        }
+
+        function toggleContrast(btn) {
+            document.body.classList.toggle('high-contrast');
+            btn.classList.toggle('active');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('senderName').value;
+            document.getElementById('formResult').textContent =
+                'Спасибо, ' + name + '! Ваше обращение принято. Для мгновенной связи вы также можете написать на ano.cg@mail.ru.';
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
